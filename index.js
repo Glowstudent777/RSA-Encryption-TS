@@ -1,17 +1,24 @@
 const crypto = require('crypto');
+const fs = require('fs');
 
 const { publicKey, privateKey } = crypto.generateKeyPairSync('rsa', { modulusLength: 4096 });
 
-console.log(
-    publicKey.export({
+try {
+    if (!fs.existsSync('keys')) {
+        fs.mkdirSync('keys');
+    }
+    fs.writeFileSync('keys/public.pem', publicKey.export({
         type: 'pkcs1',
         format: 'pem'
-    }),
-    privateKey.export({
+    }));
+
+    fs.writeFileSync('keys/private.pem', privateKey.export({
         type: 'pkcs1',
         format: 'pem'
-    })
-);
+    }));
+} catch (err) {
+    console.error(err);
+}
 
 function encryptData(data) {
     return crypto.publicEncrypt({
@@ -50,7 +57,5 @@ const signature = signData(data);
 const isVerified = verifyData(data, signature);
 
 console.log('Data:', data);
-console.log('Encrypted Data:', encryptedData.toString('base64'));
 console.log('Decrypted Data:', decryptedData.toString());
-console.log('Signature:', signature.toString('base64'));
 console.log('Is Verified:', isVerified);
