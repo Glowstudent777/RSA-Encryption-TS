@@ -22,7 +22,7 @@ The RSA encryption algorithm is a widely used asymmetric encryption algorithm th
 
 ## Usage
 
-1. Generate keys: Run `pnpm run generate-keys` to generate public and private keys.
+1. Generate keys: Run `pnpm run save-keys` to generate public and private keys.
 2. Use the functions in `src/rsa.ts` to encrypt and decrypt messages.
 
 ```ts
