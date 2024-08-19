@@ -6,7 +6,7 @@
   "main": "./dist/index.js",
   "scripts": {
     "build": "tsc",
-    "start": "npm run build && node ./dist/index.js",
+    "save-keys": "node ./dist/save-keys.js",
     "dev": "tsc-watch --onSuccess \"node ./dist/index.js\"",
     "test": "vitest",
     "test:coverage": "vitest run --coverage"

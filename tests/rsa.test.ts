@@ -10,11 +10,18 @@ describe("Encrypt and Decrypt Data", () => {
     });
 
     it("Encrypt and Decrypt Data", async () => {
+        const { publicKey, privateKey } = generateKeyPair();
+
+        expect(publicKey).toBeDefined();
+        expect(privateKey).toBeDefined();
+
         const data = "Hello, World!";
-        const encryptedData = encryptData(data);
-        const decryptedData = decryptData(encryptedData);
-        const signature = signData(data);
-        const isVerified = verifyData(data, signature);
+
+        const encryptedData = encryptData(data, publicKey);
+        const decryptedData = decryptData(encryptedData, privateKey);
+
+        const signature = signData(data, privateKey);
+        const isVerified = verifyData(data, signature, publicKey);
 
         expect(encryptData).toBeDefined();
         expect(decryptData).toBeDefined();
