@@ -17,13 +17,33 @@ The RSA encryption algorithm is a widely used asymmetric encryption algorithm th
 > **Note**
 > I use `pnpm` in these examples. `NPM` will also work if you don't have or want to install `pnpm`
 
-1. Clone the repository: `git clone https://github.com/Glowstudent777/RSA-Encryption-TS.git`
-2. Install dependencies: `pnpm install`
+Clone the repository:
+
+```sh
+git clone https://github.com/Glowstudent777/RSA-Encryption-TS.git
+```
+
+Install dependencies:
+
+```sh
+pnpm install
+```
+
+Build the project:
+
+```bash
+pnpm run build
+```
 
 ## Usage
 
-1. Generate keys: Run `pnpm run save-keys` to generate public and private keys.
-2. Use the functions in `src/rsa.ts` to encrypt and decrypt messages.
+Use the following command to generate and save the public and private keys in the `/keys` directory
+
+```sh
+pnpm run save-keys
+```
+
+Use the functions in `src/rsa.ts` to encrypt and decrypt messages using the generated keys.
 
 ```ts
 import { encryptData, decryptData }; from './src/rsa';
