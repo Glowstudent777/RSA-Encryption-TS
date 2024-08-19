@@ -1,7 +1,14 @@
-const crypto = require('crypto');
-const fs = require('fs');
+import crypto from 'crypto';
+import fs from 'fs';
 
-const { publicKey, privateKey } = crypto.generateKeyPairSync('rsa', { modulusLength: 4096 });
+function generateKeyPair() {
+    const { publicKey, privateKey } = crypto.generateKeyPairSync('rsa', {
+        modulusLength: 4096,
+    });
+
+    return { publicKey, privateKey };
+}
+const { publicKey, privateKey } = generateKeyPair();
 
 try {
     if (!fs.existsSync('keys')) {
@@ -20,7 +27,7 @@ try {
     console.error(err);
 }
 
-function encryptData(data) {
+function encryptData(data: any) {
     return crypto.publicEncrypt({
         key: publicKey,
         padding: crypto.constants.RSA_PKCS1_OAEP_PADDING,
@@ -28,7 +35,7 @@ function encryptData(data) {
     }, Buffer.from(data))
 }
 
-function decryptData(encryptedData) {
+function decryptData(encryptedData: any) {
     return crypto.privateDecrypt({
         key: privateKey,
         padding: crypto.constants.RSA_PKCS1_OAEP_PADDING,
@@ -36,26 +43,18 @@ function decryptData(encryptedData) {
     }, encryptedData)
 }
 
-function signData(data) {
+function signData(data: any) {
     return crypto.sign('sha256', Buffer.from(data), {
         key: privateKey,
         padding: crypto.constants.RSA_PKCS1_PSS_PADDING,
     })
 }
 
-function verifyData(data, signature) {
+function verifyData(data: any, signature: any) {
     return crypto.verify('sha256', Buffer.from(data), {
         key: publicKey,
         padding: crypto.constants.RSA_PKCS1_PSS_PADDING,
     }, signature)
 }
 
-const data = 'Hello, World!';
-const encryptedData = encryptData(data);
-const decryptedData = decryptData(encryptedData);
-const signature = signData(data);
-const isVerified = verifyData(data, signature);
-
-console.log('Data:', data);
-console.log('Decrypted Data:', decryptedData.toString());
-console.log('Is Verified:', isVerified);
+export { encryptData, decryptData, signData, verifyData, generateKeyPair };
