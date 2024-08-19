@@ -6,6 +6,8 @@ This is a proof of concept project demonstrating RSA encryption in TypeScript.
 
 The RSA encryption algorithm is a widely used asymmetric encryption algorithm that allows secure communication between parties. This project aims to showcase the implementation of RSA encryption in TypeScript.
 
+A cli example is provided in the [example directory](/example/).
+
 ## Features
 
 - Key generation: Generate public and private keys for encryption and decryption.
