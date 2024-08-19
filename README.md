@@ -17,7 +17,7 @@ The RSA encryption algorithm is a widely used asymmetric encryption algorithm th
 > **Note**
 > I use `pnpm` in these examples. `NPM` will also work if you don't have or want to install `pnpm`
 
-1. Clone the repository: `git clone https://github.com/Glowstudent777/RSA-Encryption.git`
+1. Clone the repository: `git clone https://github.com/Glowstudent777/RSA-Encryption-TS.git`
 2. Install dependencies: `pnpm install`
 
 ## Usage
